@@ -10,7 +10,7 @@ class App extends React.Component {
   componentDidMount() {
 
     this.props.store.subscribe(() => {
-      console.log('UPDATED')
+      // console.log('UPDATED')
       this.forceUpdate()
     })
 
@@ -37,17 +37,18 @@ class App extends React.Component {
   }
 
   render(){
-    console.log(this.props.store.getState())
+    // console.log(this.props.store.getState())
 
-    const { movies } = this.props.store.getState()
+    const { movies, search } = this.props.store.getState()
     
     const { list, favourites, showFavourites } = movies
     
     const displayMovies = showFavourites ? favourites : list
+    console.log('search from app', search )
 
     return (
       <div className="App">
-        <Navbar />
+        <Navbar dispatch={this.props.store.dispatch} search={search}/>
         <div className="main">
           <div className="tabs">
             <div className={`tab ${showFavourites ? '' : 'active-tabs'}`} onClick={() => this.onChangeTab(false)}>Movies</div>
