@@ -9,8 +9,9 @@ export const ADD_FAVOURITE = 'ADD_FAVOURITE'
 export const REMOVE_FROM_FAVOURITE = 'REMOVE_FROM_FAVOURITE'
 export const SET_SHOW_FAVOURITE = 'SET_SHOW_FAVOURITE'
 export const ADD_SEARCH_RESULT = 'ADD_SEARCH_RESULT'
+export const ADD_MOVIE_TO_LIST = 'ADD_MOVIE_TO_LIST'
 
-// Acrion creators
+// Action creators
 export function addMovies (movies){
     return {
         type: 'ADD_MOVIES',
@@ -51,6 +52,13 @@ export function handleMovieSearch(movie){
         })
         
         
+    }
+}
+
+export function addMoviesToList(movie) {
+    return{
+        type: ADD_MOVIE_TO_LIST,
+        movie
     }
 }
 

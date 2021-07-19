@@ -44,7 +44,7 @@ class App extends React.Component {
     const { list, favourites, showFavourites } = movies
     
     const displayMovies = showFavourites ? favourites : list
-    console.log('search from app', search )
+    // console.log('search from app', search )
 
     return (
       <div className="App">

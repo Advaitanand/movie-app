@@ -1,6 +1,6 @@
 import React from "react";
 
-import{ handleMovieSearch } from '../actions'
+import{ addMoviesToList, handleMovieSearch } from '../actions'
 
 class Navbar extends React.Component {
     
@@ -11,7 +11,7 @@ class Navbar extends React.Component {
       }
     }
     handleAddToMovies = (movie) => {
-      
+      this.props.dispatch(addMoviesToList(movie))
     }
 
     handleSearch = () => {
@@ -29,7 +29,7 @@ class Navbar extends React.Component {
 
     render (){
       const { result, showSearchResults } = this.props.search
-       console.log('result', result)
+      //  console.log('result', result)
         return (
             <div className="App">
               <div className="nav">
