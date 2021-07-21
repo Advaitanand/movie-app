@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -36,6 +37,19 @@ const logger = ({dispatch, getState}) => (next) => (action) => {
 const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 // console.log('Store',store)
 
+// export const StoreContext = createContext();
+
+// console.log('StoreContext', StoreContext)
+
+// class Provider extends React.Component{
+//   render() {
+//     const { store } = this.props
+//     return <StoreContext.Provider value={store}>
+//       {this.props.children}                           {/* Children are anything between Provider in ReactDom.render */}
+//     </StoreContext.Provider>
+//   }
+// }
+
 // store.dispatch({
 //   type:"ADD_MOVIES",
 //   movies:[{
@@ -43,11 +57,45 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 //   }]
 // })
 
+// export function connect (callback) {
+//   return function (component) {
+//     class ConnectedComponent extends React.Component {
 
+//       constructor(props){
+//         super(props)
+//         this.unsubscribe = this.props.store.subscribe(() => this.forceUpdate())
+
+//       }
+//       componentWillUnmount(){
+//         this.unsubscribe()
+//       }
+//       render () {
+
+//         const { store } = this.props
+//         const state = store.getState()
+//         const dataToBePassedAsProps = callback(state)
+
+//         return <Component { ...dataToBePassedAsProps} dispatch={store.dispatch} />         
+//       }
+//     } 
+//   }
+//   class ConnectedComponentWrapper extends React.Component {
+//     render() {
+//       return(
+//         <StoreContext.Consumer>
+//           {(store) => <connectedComponent store={store} />}
+//         </StoreContext.Consumer>
+//       )
+//     }
+//   }
+//   return ConnectedComponentWrapper
+// } 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App store={store}/>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
